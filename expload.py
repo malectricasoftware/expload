@@ -2,7 +2,7 @@ import tempfile
 from pyfsig import constants
 import requests
 import mimetypes
-import lib.parse
+import exploadlib.parse
 mimetypes.init()
 
 
