@@ -18,7 +18,11 @@ def fileupload():
     with open(args.payload,"r") as payload:
         content=payload.read().encode("utf-8")
     with tempfile.NamedTemporaryFile() as tmp:
-        sig,mime=grabsig(ext)
+        try:
+            sig,mime=grabsig(ext)
+        except TypeError:
+            print("Error: most likely this file type is not in the available signature list")
+            exit()
         tmp.write(sig)
         tmp.write(b"\n")
         tmp.write(content)
