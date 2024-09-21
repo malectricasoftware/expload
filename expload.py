@@ -45,7 +45,7 @@ def fileupload():
                 print("Error: Connection refused") 
                 exit()
 
-        print(r.text)      
+        print("file posted")      
 
 if __name__ == "__main__":
     args=exploadlib.parse.parser()
