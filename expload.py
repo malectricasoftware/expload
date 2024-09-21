@@ -1,8 +1,8 @@
 import tempfile
 from pyfsig import constants
-import requests
+import httpx
 import mimetypes
-import exploadlib.parse
+import lib.parse
 mimetypes.init()
 
 
@@ -28,9 +28,25 @@ def fileupload():
         tmp.write(content)
         tmp.seek(0)
         files = {name: (filename, tmp, mime)}
-        r = requests.post(args.url, files=files)    
+        with httpx.Client(http2=args.http2) as client:
+
+            try:
+                r = client.post(args.url, files=files)
+
+            except httpx.ReadTimeout:
+                print("Error: Response timed out but file may have been uploaded")
+                exit()
+
+            except httpx.RemoteProtocolError:
+                print("Error: Server disconnected without sending a response") 
+                exit()
+
+            except httpx.ConnectError:
+                print("Error: Connection refused") 
+                exit()
+
         print(r.text)      
 
 if __name__ == "__main__":
-    args=exploadlib.parse.parser()
+    args=lib.parse.parser()
     fileupload()
