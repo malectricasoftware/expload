@@ -1,0 +1,4 @@
+pyfsig
+mimetypes
+tempfile
+httpx[http2]
