@@ -2,7 +2,7 @@ import tempfile
 from pyfsig import constants
 import httpx
 import mimetypes
-import lib.parse
+import exploadlib.parse
 mimetypes.init()
 
 
@@ -48,5 +48,5 @@ def fileupload():
         print(r.text)      
 
 if __name__ == "__main__":
-    args=lib.parse.parser()
+    args=exploadlib.parse.parser()
     fileupload()
