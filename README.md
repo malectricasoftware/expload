@@ -6,7 +6,7 @@ A tool for injecting magic bytes of allowed files, and spoofing the mime type. I
 
 ## useage
 ```
-expload.py [-h] -u URL -p PAYLOAD -e EXT -n NAME -f FILENAME
+expload.py [-h] -u URL -p PAYLOAD -e EXT -n NAME -f FILENAME [-d] [-h2] [-he HEADERS [HEADERS ...]] [-c COOKIES] [-r]
 
 expload args
 
@@ -19,4 +19,11 @@ options:
   -n NAME, --name NAME  field name for file upload
   -f FILENAME, --filename FILENAME
                         file name to upload with
+  -d, --doubleextend    spoofed extension inserted into filename
+  -h2, --http2          use http2 if supported
+  -he HEADERS [HEADERS ...], --headers HEADERS [HEADERS ...]
+                        headers and keys colon seperated
+  -c COOKIES, --cookies COOKIES
+                        cookies seperated by ; and wrapped in quotes
+  -r, --response        display the response from the target webapp
 ```
